@@ -1,0 +1,16 @@
+nodedef> name,label,distance
+v0, 'D', 3
+v1, 'E', 4
+v2, 'G', 5
+v3, 'A', 0
+v4, 'B', 1
+v5, 'C', 2
+v6, 'H', 2147483647
+edgedef> node1,node2,color
+v0, v1, blue
+v0, v2, gray
+v1, v2, blue
+v3, v4, blue
+v3, v5, gray
+v4, v5, blue
+v5, v0, blue
