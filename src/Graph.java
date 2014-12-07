@@ -10,21 +10,28 @@ public class Graph {
 	protected int[] bFTTree; // Stores the breadth first tree
 
 	// Default constructor. Sets aside enough capacity for one vertex
-	public Graph() {
-		this(1);
-	}
-
-	// Constructor that sets aside as much capacity as specified by the user
-	public Graph(int capacity) {
-		//Vertices = new Integer[capacity];
+//	public Graph() {
+//		this(1);
+//	}
+//
+//	// Constructor that sets aside as much capacity as specified by the user
+//	public Graph(int capacity) {
+//		//Vertices = new Integer[capacity];
+//		Edges = new LinkedList[capacity];
+//		
+//		// Construct the LinkList object in each slot in Edges
+//		for (int i = 0; i < capacity; i++)
+//			Edges[i] = new LinkedList();
+//
+//		numVertices = 0;
+//		numEdges = 0;
+//	}
+	public void setSize(int capacity){
 		Edges = new LinkedList[capacity];
 		
 		// Construct the LinkList object in each slot in Edges
 		for (int i = 0; i < capacity; i++)
 			Edges[i] = new LinkedList();
-
-		numVertices = 0;
-		numEdges = 0;
 	}
 
 	public int numberOfVertices() {
@@ -59,25 +66,7 @@ public class Graph {
 
 		return temp;
 	}
-
-	// Resizes Edges, the array of linked lists. Can make it
-	// larger or smaller, depending on what newSize is.
-	protected LinkList[] resize(LinkList[] array, int newSize) {
-		LinkList[] temp = new LinkList[newSize];
-
-		int smallerSize = newSize;
-		if (array.length < smallerSize)
-			smallerSize = array.length;
-
-		for (int i = 0; i < smallerSize; i++)
-			temp[i] = array[i];
-
-		for (int i = smallerSize; i < newSize; i++)
-			temp[i] = new LinkList();
-
-		return temp;
-	}
-
+	
 	// Adds a new vertex
 	public void addVertex(Integer newVertex) {
 		if (getIndex(newVertex) != -1) {
@@ -87,15 +76,8 @@ public class Graph {
 			return;
 		}
 
-		// if array of vertices is full, we need to expand it and
-		// also expand Edges
-//		if (Vertices.size() == numVertices) {
-//			Vertices = resize(Vertices, 2 * numVertices + 1);
-//			Edges = resize(Edges, 2 * numVertices + 1);
-//		}
-
+		
 		Vertices.add(numVertices++, new Vertex(newVertex));
-		//System.out.println(newVertex);
 	}
 
 	// Adds a new edge, wittht no given weight
@@ -107,6 +89,7 @@ public class Graph {
 	// Adds a new edge
 	public void addEdge(Integer vertex1, Integer vertex2, double distance) {
 		int i = getIndex(vertex1);
+		
 		if (i == -1) {
 			System.out.print("addEdge failed: ");
 			System.out.print(vertex1);
@@ -198,7 +181,7 @@ public class Graph {
 				// Peek at the current vertex
 				int currentVertex = (s.peek()).intValue();
 
-				System.out.println(Vertices.get(currentVertex).id);
+				System.out.println(Vertices.get(currentVertex).id + " " + Vertices.get(currentVertex).name);
 
 				// Get the indices of the neighbors of the current vertex
 				Integer[] neighbors = getNeighbors(currentVertex);

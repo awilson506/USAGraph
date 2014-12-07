@@ -2,8 +2,9 @@
 public class Driver {
 	public static void main(String args[]) {
 		
-		Graph g = new Graph(11);
+		Graph g = new Graph();
 		g = BuildGraph.getMap(g);
+		BuildGraph.assignStateName(g);
 		
 
 		System.out.println("Output of depth first traversal");

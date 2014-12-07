@@ -5,8 +5,6 @@ public class Vertex {
 	Integer id = null;
 	
 	Vertex(Integer newid){
-		//name = name;
 		id = newid;
 	}
-
 }

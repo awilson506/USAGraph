@@ -19,6 +19,8 @@ public class BuildGraph {
 				g.addVertex(j);
 				j++;
 			}
+			g.setSize(j);
+			
 			
 			while ((line = edgeInput.readLine()) != null) {
 				StringTokenizer tokens = new StringTokenizer(line);
@@ -36,6 +38,28 @@ public class BuildGraph {
 			System.out.println(ex);
 		}
 		return null;
+	}
+	
+	public static void assignStateName(Graph g){
+		for(Vertex vertex : g.Vertices){
+			vertex.name = getName(vertex.id);
+		}
+	}
+
+	private static String getName(Integer id) {
+		String[] stateNames = new String[48];
+		stateNames[1] = "Washington";
+		stateNames[2] = "Oregon";
+		stateNames[3] = "California";
+		stateNames[4] = "Nevada";
+		stateNames[5] = "Idaho";
+		stateNames[6] = "Montana";
+		stateNames[7] = "Utah";
+		stateNames[8] = "Arizona";
+		stateNames[9] = "Wyoming";
+		stateNames[10] = "Colorado";
+		stateNames[11] = "New Mexico";
+		return stateNames[id];
 	}
 
 }
