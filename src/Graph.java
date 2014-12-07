@@ -1,8 +1,9 @@
 import java.util.*;
 
 public class Graph {
-	protected String[] Vertices; // 1-d array to store the vertices
-	protected LinkList[] Edges; // adjacency list representation
+	//protected Integer[] Vertices; // 1-d array to store the vertices
+	protected ArrayList<Vertex> Vertices = new ArrayList<Vertex>();
+	protected LinkedList[] Edges; // adjacency list representation
 	protected int numVertices; // tracks the number of vertices
 	protected int numEdges; // tracks the number of edges
 	protected int[] dFTTree; // Stores the depth first tree
@@ -15,12 +16,12 @@ public class Graph {
 
 	// Constructor that sets aside as much capacity as specified by the user
 	public Graph(int capacity) {
-		Vertices = new String[capacity];
-		Edges = new LinkList[capacity];
-
+		//Vertices = new Integer[capacity];
+		Edges = new LinkedList[capacity];
+		
 		// Construct the LinkList object in each slot in Edges
 		for (int i = 0; i < capacity; i++)
-			Edges[i] = new LinkList();
+			Edges[i] = new LinkedList();
 
 		numVertices = 0;
 		numEdges = 0;
@@ -36,9 +37,9 @@ public class Graph {
 
 	// Finds the location at which a vertex is stored in Vertices.
 	// Returns -1 if vertex not found
-	public int getIndex(String vertex) {
+	public int getIndex(Integer vertex) {
 		for (int i = 0; i < numVertices; i++)
-			if (vertex.equals(Vertices[i]))
+			if (vertex.equals(Vertices.get(i).id))
 				return i;
 
 		return -1;
@@ -46,15 +47,15 @@ public class Graph {
 
 	// Resizes the array of vertices. Can make it larger or smaller,
 	// depending on what newSize is.
-	protected String[] resize(String[] array, int newSize) {
-		String[] temp = new String[newSize];
+	protected Integer[] resize(Integer[] vertices2, int newSize) {
+		Integer[] temp = new Integer[newSize];
 
 		int smallerSize = newSize;
-		if (array.length < smallerSize)
-			smallerSize = array.length;
+		if (vertices2.length < smallerSize)
+			smallerSize = vertices2.length;
 
 		for (int i = 0; i < smallerSize; i++)
-			temp[i] = array[i];
+			temp[i] = vertices2[i];
 
 		return temp;
 	}
@@ -78,7 +79,7 @@ public class Graph {
 	}
 
 	// Adds a new vertex
-	public void addVertex(String newVertex) {
+	public void addVertex(Integer newVertex) {
 		if (getIndex(newVertex) != -1) {
 			System.out.print("addVertex: ");
 			System.out.print(newVertex);
@@ -88,21 +89,23 @@ public class Graph {
 
 		// if array of vertices is full, we need to expand it and
 		// also expand Edges
-		if (Vertices.length == numVertices) {
-			Vertices = resize(Vertices, 2 * numVertices + 1);
-			Edges = resize(Edges, 2 * numVertices + 1);
-		}
+//		if (Vertices.size() == numVertices) {
+//			Vertices = resize(Vertices, 2 * numVertices + 1);
+//			Edges = resize(Edges, 2 * numVertices + 1);
+//		}
 
-		Vertices[numVertices++] = newVertex;
+		Vertices.add(numVertices++, new Vertex(newVertex));
+		//System.out.println(newVertex);
 	}
 
 	// Adds a new edge, wittht no given weight
-	public void addEdge(String vertex1, String vertex2) {
+	public void addEdge(Integer vertex1, Integer vertex2) {
+		
 		addEdge(vertex1, vertex2, 0);
 	}
 
 	// Adds a new edge
-	public void addEdge(String vertex1, String vertex2, double distance) {
+	public void addEdge(Integer vertex1, Integer vertex2, double distance) {
 		int i = getIndex(vertex1);
 		if (i == -1) {
 			System.out.print("addEdge failed: ");
@@ -113,102 +116,22 @@ public class Graph {
 
 		int j = getIndex(vertex2);
 		if (j == -1) {
+			//this.addVertex(vertex2);
 			System.out.print("addEdge failed: ");
 			System.out.print(vertex2);
 			System.out.println(" does not exist.");
 			return;
 		}
 
-		if (Edges[i].find(j) == null) {
-			Edges[i].insertFirst(j, distance);
-			Edges[j].insertFirst(i, distance);
+		if (Edges[i].contains(j) == false) {
+			Edges[i].addFirst(j);
+			Edges[j].addFirst(i);
 			numEdges++;
 		}
 	}
-
-	// delete the given vertex
-	public void deleteVertex(String vertex) {
-		int i = getIndex(vertex);
-		if (i == -1) {
-			System.out.print("deleteVertex: ");
-			System.out.print(vertex);
-			System.out.println(" failed -- it does not exist.");
-			return;
-		}
-
-		// Remember the degree of the vertex
-		int degree = Edges[i].size();
-
-		// First, let us delete this vertex from the adacency lists
-		// of each of its neighbors
-		int[] neighbors = getNeighbors(i);
-		for (int j = 0; j < neighbors.length; j++)
-			Edges[neighbors[j]].delete(i);
-
-		// Move the last vertex up to occupy the hole
-		// left by the departure of vertex i
-		Vertices[i] = Vertices[numVertices - 1];
-		Edges[i] = Edges[numVertices - 1];
-		Edges[numVertices - 1] = new LinkList();
-
-		// Change all occurances of the index numVertices-1 to i
-		neighbors = getNeighbors(i);
-		for (int j = 0; j < neighbors.length; j++) {
-			Link temp = Edges[neighbors[j]].find(numVertices - 1);
-			temp.iData = i;
-		}
-
-		// Update the number of vertices and the number of edges
-		numVertices--;
-		numEdges = numEdges - degree;
-	}
-
-	// deletes a given edge
-	public void deleteEdge(String vertex1, String vertex2) {
-		int i = getIndex(vertex1);
-		if (i == -1) {
-			System.out.print("deleteEdge failed: ");
-			System.out.print(vertex1);
-			System.out.println(" does not exist.");
-			return;
-		}
-
-		int j = getIndex(vertex2);
-		if (j == -1) {
-			System.out.print("deleteEdge failed: ");
-			System.out.print(vertex2);
-			System.out.println(" does not exist.");
-			return;
-		}
-
-		if (Edges[i].delete(j) != null) {
-			numEdges--;
-			Edges[j].delete(i);
-		}
-	}
-
-	// returns the names of all the neighbors of a given vertex in an array of
-	// Strings
-	public String[] getNeighbors(String vertex) {
-		int source = getIndex(vertex);
-		if (source == -1) {
-			System.out.print("getNeighbors failed: Vertex ");
-			System.out.print(vertex);
-			System.out.println(" does not exist.");
-			return new String[0];
-		}
-
-		int[] neighborsIndices = getNeighbors(source);
-		String[] neighbors = new String[neighborsIndices.length];
-
-		for (int j = 0; j < neighbors.length; j++)
-			neighbors[j] = Vertices[neighborsIndices[j]];
-
-		return neighbors;
-	}
-
+	
 	// returns the degree of a vertex with given name
-	public int degree(String vertex) {
+	public int degree(Integer vertex) {
 		// Get the index of the vertex
 		int i = getIndex(vertex);
 		if (i == -1) {
@@ -227,15 +150,24 @@ public class Graph {
 	}
 
 	// returns the indices of all the neighbors of a given vertex with index
-	public int[] getNeighbors(int index) {
-		return Edges[index].toArray();
+	public Integer[] getNeighbors(int index) {
+		Object[] list = Edges[index].toArray();
+		Integer[] intArray = new Integer[list.length];
+
+		  for(int i=0; i<list.length; i++){
+		   intArray[i] = (Integer) list[i];
+		  }
+
+		return intArray;
 	}
 
-	public void depthFirstTraversal(String source) {
+	public void depthFirstTraversal(Integer source) {
 
 		// Getting the index of the source vertex and
 		// checking if the vertex really exists
+		
 		int sourceIndex = getIndex(source);
+		
 		if (sourceIndex == -1) {
 			System.out.print("In depthFirstTraversal: vertex ");
 			System.out.print(source);
@@ -266,10 +198,10 @@ public class Graph {
 				// Peek at the current vertex
 				int currentVertex = (s.peek()).intValue();
 
-				System.out.println(Vertices[currentVertex]);
+				System.out.println(Vertices.get(currentVertex).id);
 
 				// Get the indices of the neighbors of the current vertex
-				int[] neighbors = getNeighbors(currentVertex);
+				Integer[] neighbors = getNeighbors(currentVertex);
 
 				// Scan the neighbors of the current vertex, looking
 				// for an unvisited neighbor
@@ -319,7 +251,7 @@ public class Graph {
 
 	} // end of function
 
-	public void breadthFirstTraversal(String source) {
+	public void breadthFirstTraversal(Integer source) {
 
 		// Getting the index of the source vertex and
 		// checking if the vertex really exists
@@ -355,10 +287,10 @@ public class Graph {
 				// This is our current vertex
 				int currentVertex = q.remove();
 
-				System.out.println(Vertices[currentVertex]);
+				System.out.println(Vertices.get(currentVertex).id);
 
 				// Get the indices of the neighbors of the current vertex
-				int[] neighbors = getNeighbors(currentVertex);
+				Integer[] neighbors = getNeighbors(currentVertex);
 
 				// Scan the neighbors of the current vertex, looking
 				// for an unvisited neighbor
@@ -395,7 +327,7 @@ public class Graph {
 	} // end of function
 
 	// Compute a shortest path between s and t
-	String[] shortestPath(String s, String t) {
+	public Integer[] shortestPath(Integer s, Integer t) {
 
 		// Get the index of the source and check if valid
 		int sourceIndex = getIndex(s);
@@ -403,7 +335,7 @@ public class Graph {
 			System.out.print("In shortestPath: vertex ");
 			System.out.print(s);
 			System.out.println(" is missing.");
-			return new String[0];
+			return new Integer[0];
 		}
 
 		// Get the index of the desination and check if valid
@@ -412,7 +344,7 @@ public class Graph {
 			System.out.print("In shortestPath: vertex ");
 			System.out.print(t);
 			System.out.println(" is missing.");
-			return new String[0];
+			return new Integer[0];
 		}
 
 		// Do a BFT starting at s and construct the BFT tree
@@ -420,13 +352,13 @@ public class Graph {
 
 		// Traverse up the BFT tree, following parent pointers
 		// until a root is reached. Push the path into a stack
-		Stack<String> temp = new Stack<String>();
-		temp.push(Vertices[destIndex]);
+		Stack<Integer> temp = new Stack<Integer>();
+		temp.push(Vertices.get(destIndex).id);
 
 		int i = destIndex;
 		int pathLength = 0;
 		while (bFTTree[i] != i) {
-			temp.push(Vertices[i]);
+			temp.push(Vertices.get(i).id);
 			pathLength++;
 			i = bFTTree[i];
 		}
@@ -442,13 +374,13 @@ public class Graph {
 			System.out.print(s);
 			System.out.print(" and ");
 			System.out.println(t);
-			return new String[0];
+			return new Integer[0];
 		}
 
 		// Pop the path from the stack and store in a String array
 		// called path. Popping from sack automatically reverses
 		// the path
-		String[] path = new String[pathLength];
+		Integer[] path = new Integer[pathLength];
 		for (i = 0; i < pathLength; i++)
 			path[i] = temp.pop();
 
