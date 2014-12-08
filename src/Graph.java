@@ -262,8 +262,8 @@ public class Graph {
 		visited[sourceIndex] = true;
 
 		// Defining and initializing the queue
-		Queue q = new Queue(numVertices);
-		q.insert(sourceIndex);
+		Queue<Integer> q = new LinkedList<Integer>(); // = new Queue(numVertices);
+		q.add(sourceIndex);
 
 		// Initializing the breadth first traversal tree
 		bFTTree = new int[numVertices];
@@ -290,7 +290,7 @@ public class Graph {
 				// for an unvisited neighbor
 				for (int j = 0; j < neighbors.length; j++) {
 					if (!visited[neighbors[j]]) {
-						q.insert(neighbors[j]);
+						q.add(neighbors[j]);
 						visited[neighbors[j]] = true;
 						bFTTree[neighbors[j]] = currentVertex;
 					}
@@ -314,7 +314,7 @@ public class Graph {
 			// Enqueue a vertex from the next connected component
 			// into the queue
 			if (more) {
-				q.insert(j - 1);
+				q.add(j - 1);
 				visited[j - 1] = true;
 			}
 		} while (more);
