@@ -1,0 +1,153 @@
+Depth first traversal
+*********************
+Level  State
+-----+--------------
+1    | Washington
+5    | Idaho
+9    | Wyoming
+13   | South Dakota
+18   | Minnesota
+23   | Wisconsin
+24   | Illinois
+27   | Indiana
+31   | Ohio
+42   | Pennsylvania
+47   | New Jersey
+48   | Delaware
+43   | Maryland
+33   | Virginia
+34   | North Carolina
+35   | South Carolina
+36   | Georgia
+37   | Florida
+30   | Alabama
+29   | Tennessee
+28   | Kentucky
+32   | West Virginia
+28   | Kentucky
+20   | Missouri
+21   | Arkansas
+25   | Mississippi
+22   | Louisiana
+17   | Texas
+16   | Oklahoma
+15   | Kansas
+14   | Nebraska
+19   | Iowa
+14   | Nebraska
+10   | Colorado
+11   | New Mexico
+8    | Arizona
+7    | Utah
+4    | Nevada
+3    | California
+2    | Oregon
+3    | California
+4    | Nevada
+7    | Utah
+8    | Arizona
+11   | New Mexico
+10   | Colorado
+14   | Nebraska
+15   | Kansas
+16   | Oklahoma
+17   | Texas
+22   | Louisiana
+25   | Mississippi
+21   | Arkansas
+20   | Missouri
+28   | Kentucky
+29   | Tennessee
+30   | Alabama
+37   | Florida
+36   | Georgia
+35   | South Carolina
+34   | North Carolina
+33   | Virginia
+43   | Maryland
+48   | Delaware
+47   | New Jersey
+41   | New York
+44   | Massachusetts
+45   | Rhode Island
+46   | Connecticut
+45   | Rhode Island
+44   | Massachusetts
+40   | Vermont
+39   | New Hampshire
+38   | Maine
+39   | New Hampshire
+40   | Vermont
+44   | Massachusetts
+41   | New York
+47   | New Jersey
+42   | Pennsylvania
+31   | Ohio
+26   | Michigan
+31   | Ohio
+27   | Indiana
+24   | Illinois
+23   | Wisconsin
+18   | Minnesota
+12   | North Dakota
+6    | Montana
+12   | North Dakota
+18   | Minnesota
+13   | South Dakota
+9    | Wyoming
+5    | Idaho
+1    | Washington
+
+
+Breadth first traversal
+*********************
+Level  State
+-----+--------------
+1    | Washington
+5    | Idaho
+2    | Oregon
+9    | Wyoming
+7    | Utah
+6    | Montana
+4    | Nevada
+3    | California
+13   | South Dakota
+14   | Nebraska
+10   | Colorado
+11   | New Mexico
+8    | Arizona
+12   | North Dakota
+18   | Minnesota
+19   | Iowa
+20   | Missouri
+15   | Kansas
+16   | Oklahoma
+17   | Texas
+23   | Wisconsin
+24   | Illinois
+28   | Kentucky
+29   | Tennessee
+21   | Arkansas
+22   | Louisiana
+27   | Indiana
+32   | West Virginia
+33   | Virginia
+31   | Ohio
+34   | North Carolina
+36   | Georgia
+30   | Alabama
+25   | Mississippi
+26   | Michigan
+43   | Maryland
+42   | Pennsylvania
+35   | South Carolina
+37   | Florida
+48   | Delaware
+47   | New Jersey
+41   | New York
+44   | Massachusetts
+46   | Connecticut
+40   | Vermont
+45   | Rhode Island
+39   | New Hampshire
+38   | Maine
