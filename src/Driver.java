@@ -16,7 +16,7 @@ public class Driver {
 		System.out.println("\n");
 		g.breadthFirstTraversal(1);
 		}catch(Exception ex){
-			
+			System.out.println("Error: " + ex);
 		}
 
 	}
