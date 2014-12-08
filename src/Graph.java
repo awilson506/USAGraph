@@ -1,7 +1,7 @@
 import java.util.*;
 
 public class Graph {
-	//protected Integer[] Vertices; // 1-d array to store the vertices
+	// protected Integer[] Vertices; // 1-d array to store the vertices
 	protected ArrayList<Vertex> Vertices = new ArrayList<Vertex>();
 	protected LinkedList[] Edges; // adjacency list representation
 	protected int numVertices; // tracks the number of vertices
@@ -10,28 +10,29 @@ public class Graph {
 	protected int[] bFTTree; // Stores the breadth first tree
 
 	// Default constructor. Sets aside enough capacity for one vertex
-//	public Graph() {
-//		this(1);
-//	}
-//
-//	// Constructor that sets aside as much capacity as specified by the user
-//	public Graph(int capacity) {
-//		//Vertices = new Integer[capacity];
-//		Edges = new LinkedList[capacity];
-//		
-//		// Construct the LinkList object in each slot in Edges
-//		for (int i = 0; i < capacity; i++)
-//			Edges[i] = new LinkedList();
-//
-//		numVertices = 0;
-//		numEdges = 0;
-//	}
-	public void setSize(int capacity){
+	// public Graph() {
+	// this(1);
+	// }
+	//
+	// // Constructor that sets aside as much capacity as specified by the user
+	// public Graph(int capacity) {
+	// //Vertices = new Integer[capacity];
+	// Edges = new LinkedList[capacity];
+	//
+	// // Construct the LinkList object in each slot in Edges
+	// for (int i = 0; i < capacity; i++)
+	// Edges[i] = new LinkedList();
+	//
+	// numVertices = 0;
+	// numEdges = 0;
+	// }
+	public void setSize(int capacity) {
 		Edges = new LinkedList[capacity];
-		
+
 		// Construct the LinkList object in each slot in Edges
-		for (int i = 0; i < capacity; i++)
+		for (int i = 0; i < capacity; i++){
 			Edges[i] = new LinkedList();
+		}
 	}
 
 	public int numberOfVertices() {
@@ -45,28 +46,31 @@ public class Graph {
 	// Finds the location at which a vertex is stored in Vertices.
 	// Returns -1 if vertex not found
 	public int getIndex(Integer vertex) {
-		for (int i = 0; i < numVertices; i++)
-			if (vertex.equals(Vertices.get(i).id))
+		for (int i = 0; i < numVertices; i++){
+			if (vertex.equals(Vertices.get(i).id)){
 				return i;
-
+			}
+		}
 		return -1;
 	}
 
 	// Resizes the array of vertices. Can make it larger or smaller,
 	// depending on what newSize is.
-	protected Integer[] resize(Integer[] vertices2, int newSize) {
-		Integer[] temp = new Integer[newSize];
+//	protected Integer[] resize(Integer[] vertices2, int newSize) {
+//		Integer[] temp = new Integer[newSize];
+//
+//		int smallerSize = newSize;
+//		if (vertices2.length < smallerSize){
+//			smallerSize = vertices2.length;
+//		}
+//
+//		for (int i = 0; i < smallerSize; i++){
+//			temp[i] = vertices2[i];
+//		}
+//
+//		return temp;
+//	}
 
-		int smallerSize = newSize;
-		if (vertices2.length < smallerSize)
-			smallerSize = vertices2.length;
-
-		for (int i = 0; i < smallerSize; i++)
-			temp[i] = vertices2[i];
-
-		return temp;
-	}
-	
 	// Adds a new vertex
 	public void addVertex(Integer newVertex) {
 		if (getIndex(newVertex) != -1) {
@@ -76,20 +80,19 @@ public class Graph {
 			return;
 		}
 
-		
 		Vertices.add(numVertices++, new Vertex(newVertex));
 	}
 
-	// Adds a new edge, wittht no given weight
+	// Adds a new edge, with no given weight
 	public void addEdge(Integer vertex1, Integer vertex2) {
-		
+
 		addEdge(vertex1, vertex2, 0);
 	}
 
 	// Adds a new edge
 	public void addEdge(Integer vertex1, Integer vertex2, double distance) {
 		int i = getIndex(vertex1);
-		
+
 		if (i == -1) {
 			System.out.print("addEdge failed: ");
 			System.out.print(vertex1);
@@ -99,7 +102,7 @@ public class Graph {
 
 		int j = getIndex(vertex2);
 		if (j == -1) {
-			//this.addVertex(vertex2);
+			// this.addVertex(vertex2);
 			System.out.print("addEdge failed: ");
 			System.out.print(vertex2);
 			System.out.println(" does not exist.");
@@ -112,7 +115,7 @@ public class Graph {
 			numEdges++;
 		}
 	}
-	
+
 	// returns the degree of a vertex with given name
 	public int degree(Integer vertex) {
 		// Get the index of the vertex
@@ -137,9 +140,9 @@ public class Graph {
 		Object[] list = Edges[index].toArray();
 		Integer[] intArray = new Integer[list.length];
 
-		  for(int i=0; i<list.length; i++){
-		   intArray[i] = (Integer) list[i];
-		  }
+		for (int i = 0; i < list.length; i++) {
+			intArray[i] = (Integer) list[i];
+		}
 
 		return intArray;
 	}
@@ -148,9 +151,9 @@ public class Graph {
 
 		// Getting the index of the source vertex and
 		// checking if the vertex really exists
-		
+
 		int sourceIndex = getIndex(source);
-		
+
 		if (sourceIndex == -1) {
 			System.out.print("In depthFirstTraversal: vertex ");
 			System.out.print(source);
@@ -160,8 +163,9 @@ public class Graph {
 
 		// Defining and initializing the visited array
 		boolean[] visited = new boolean[numVertices];
-		for (int j = 0; j < numVertices; j++)
+		for (int j = 0; j < numVertices; j++){
 			visited[j] = false;
+		}
 		visited[sourceIndex] = true;
 
 		// Defining and initializing the stack
@@ -170,8 +174,9 @@ public class Graph {
 
 		// Initializing the depth first traversal tree
 		dFTTree = new int[numVertices];
-		for (int j = 0; j < numVertices; j++)
+		for (int j = 0; j < numVertices; j++){
 			dFTTree[j] = j;
+		}
 
 		boolean more;
 		do {
@@ -181,7 +186,8 @@ public class Graph {
 				// Peek at the current vertex
 				int currentVertex = (s.peek()).intValue();
 
-				System.out.println(Vertices.get(currentVertex).id + " " + Vertices.get(currentVertex).name);
+				System.out.println(Vertices.get(currentVertex).id + " "
+						+ Vertices.get(currentVertex).name);
 
 				// Get the indices of the neighbors of the current vertex
 				Integer[] neighbors = getNeighbors(currentVertex);
@@ -208,8 +214,9 @@ public class Graph {
 
 				// If no unvisited vertices have been found, it is time
 				// to backtrack
-				if (!found)
+				if (!found){
 					s.pop();
+				}
 			} // end of while-stack-not-empty loop
 
 			// Determine if there are more unvisited vertices
@@ -218,8 +225,9 @@ public class Graph {
 			more = false;
 			int j = 0;
 			while (j < numVertices && !more) {
-				if (!visited[j])
+				if (!visited[j]){
 					more = true;
+				}
 				j++;
 			}
 
@@ -248,8 +256,9 @@ public class Graph {
 
 		// Defining and initializing the visited array
 		boolean[] visited = new boolean[numVertices];
-		for (int j = 0; j < numVertices; j++)
+		for (int j = 0; j < numVertices; j++){
 			visited[j] = false;
+		}
 		visited[sourceIndex] = true;
 
 		// Defining and initializing the queue
@@ -258,8 +267,9 @@ public class Graph {
 
 		// Initializing the breadth first traversal tree
 		bFTTree = new int[numVertices];
-		for (int j = 0; j < numVertices; j++)
+		for (int j = 0; j < numVertices; j++){
 			bFTTree[j] = j;
+		}
 
 		boolean more;
 		do {
@@ -270,7 +280,8 @@ public class Graph {
 				// This is our current vertex
 				int currentVertex = q.remove();
 
-				System.out.println(Vertices.get(currentVertex).id);
+				System.out.println(Vertices.get(currentVertex).id + " "
+						+ Vertices.get(currentVertex).name);
 
 				// Get the indices of the neighbors of the current vertex
 				Integer[] neighbors = getNeighbors(currentVertex);
@@ -294,8 +305,9 @@ public class Graph {
 			more = false;
 			int j = 0;
 			while (j < numVertices && !more) {
-				if (!visited[j])
+				if (!visited[j]){
 					more = true;
+				}
 				j++;
 			}
 
@@ -307,7 +319,7 @@ public class Graph {
 			}
 		} while (more);
 
-	} // end of function
+	}
 
 	// Compute a shortest path between s and t
 	public Integer[] shortestPath(Integer s, Integer t) {
@@ -364,11 +376,11 @@ public class Graph {
 		// called path. Popping from sack automatically reverses
 		// the path
 		Integer[] path = new Integer[pathLength];
-		for (i = 0; i < pathLength; i++)
+		for (i = 0; i < pathLength; i++){
 			path[i] = temp.pop();
+		}
 
 		return path;
 
-	} // end of shortest path function
-
-} // end of class
+	}
+}
