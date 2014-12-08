@@ -5,15 +5,9 @@ public class Driver {
 		Graph g = new Graph();
 		g = BuildGraph.getMap(g);
 		BuildGraph.assignStateName(g);
-
-		System.out.println("Depth first traversal");
 		g.depthFirstTraversal(1);
-		System.out.println("*********************");
-
-		System.out.println("Breadth first traversal");
+		System.out.println("\n");
 		g.breadthFirstTraversal(1);
-		System.out.println("*********************");
-
 
 	}
 }

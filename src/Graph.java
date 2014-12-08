@@ -126,6 +126,10 @@ public class Graph {
 		}
 
 		boolean more;
+		System.out.println("Depth first traversal");
+		System.out.println("*********************");
+		System.out.println(String.format("%-6s %s","Level", "State"));
+		System.out.println("-----+--------------");
 		do {
 			// The traversal can go on while the stack
 			// contains a vertex to process
@@ -133,8 +137,7 @@ public class Graph {
 				// Peek at the current vertex
 				int currentVertex = (s.peek()).intValue();
 
-				System.out.println(Vertices.get(currentVertex).id + " "
-						+ Vertices.get(currentVertex).name);
+				System.out.println(String.format("%-5s| %s",Vertices.get(currentVertex).id ,Vertices.get(currentVertex).name));
 
 				// Get the indices of the neighbors of the current vertex
 				Integer[] neighbors = getNeighbors(currentVertex);
@@ -220,6 +223,10 @@ public class Graph {
 		}
 
 		boolean more;
+		System.out.println("Breadth first traversal");
+		System.out.println("*********************");
+		System.out.println(String.format("%-6s %s","Level", "State"));
+		System.out.println("-----+--------------");
 		do {
 			// The traversal can go on while the queue
 			// contains a vertex to process
@@ -228,8 +235,7 @@ public class Graph {
 				// This is our current vertex
 				int currentVertex = q.remove();
 
-				System.out.println(Vertices.get(currentVertex).id + " "
-						+ Vertices.get(currentVertex).name);
+				System.out.println(String.format("%-5s| %s",Vertices.get(currentVertex).id ,Vertices.get(currentVertex).name));
 
 				// Get the indices of the neighbors of the current vertex
 				Integer[] neighbors = getNeighbors(currentVertex);
