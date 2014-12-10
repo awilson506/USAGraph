@@ -33,26 +33,11 @@ public class Graph {
 	}
 
 	public void addVertex(Integer newVertex) {
-		if (getIndex(newVertex) != -1) {
-			System.out.print("addVertex: ");
-			System.out.print(newVertex);
-			System.out.println(" failed -- vertex already exists.");
-			return;
-		}
-
 		Vertices.add(numVertices++, new Vertex(newVertex));
 	}
 
 	public void addEdge(Integer vertex1, Integer vertex2) {
 		int i = getIndex(vertex1);
-
-		if (i == -1) {
-			System.out.print("addEdge failed: ");
-			System.out.print(vertex1);
-			System.out.println(" does not exist.");
-			return;
-		}
-
 		int j = getIndex(vertex2);
 		if (j == -1) {
 			System.out.print("addEdge failed: ");
@@ -97,13 +82,6 @@ public class Graph {
 
 	public void depthFirstTraversal(Integer source) {
 		int sourceIndex = getIndex(source);
-		if (sourceIndex == -1) {
-			System.out.print("In depthFirstTraversal: vertex ");
-			System.out.print(source);
-			System.out.println(" is missing.");
-			return;
-		}
-
 		boolean[] visited = new boolean[numVertices];
 		for (int j = 0; j < numVertices; j++) {
 			visited[j] = false;
@@ -168,13 +146,6 @@ public class Graph {
 	public void breadthFirstTraversal(Integer source) {
 
 		int sourceIndex = getIndex(source);
-		if (sourceIndex == -1) {
-			System.out.print("In breadthFirstTraversal: vertex ");
-			System.out.print(source);
-			System.out.println(" is missing.");
-			return;
-		}
-
 		boolean[] visited = new boolean[numVertices];
 		for (int j = 0; j < numVertices; j++) {
 			visited[j] = false;
