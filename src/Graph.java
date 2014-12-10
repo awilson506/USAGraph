@@ -96,7 +96,7 @@ public class Graph {
 			depthTree[j] = j;
 		}
 
-		boolean more;
+		boolean continueloop;
 		System.out.println("Depth first traversal");
 		System.out.println("*********************");
 		System.out.println(String.format("%-6s %s","Level", "State"));
@@ -125,21 +125,21 @@ public class Graph {
 				}
 			} 
 
-			more = false;
+			continueloop = false;
 			int j = 0;
-			while (j < numVertices && !more) {
+			while (j < numVertices && !continueloop) {
 				if (!visited[j]) {
-					more = true;
+					continueloop = true;
 				}
 				j++;
 			}
 
-			if (more) {
+			if (continueloop) {
 				s.push(new Integer(j - 1));
 				visited[j - 1] = true;
 			}
 
-		} while (more);
+		} while (continueloop);
 
 	}
 
@@ -160,7 +160,7 @@ public class Graph {
 			breadthTree[j] = j;
 		}
 
-		boolean more;
+		boolean continueloop;
 		System.out.println("Breadth first traversal");
 		System.out.println("*********************");
 		System.out.println(String.format("%-6s %s","Level", "State"));
@@ -180,20 +180,20 @@ public class Graph {
 				}
 			}
 			
-			more = false;
+			continueloop = false;
 			int j = 0;
-			while (j < numVertices && !more) {
+			while (j < numVertices && !continueloop) {
 				if (!visited[j]) {
-					more = true;
+					continueloop = true;
 				}
 				j++;
 			}
 
-			if (more) {
+			if (continueloop) {
 				q.add(j - 1);
 				visited[j - 1] = true;
 			}
-		} while (more);
+		} while (continueloop);
 
 	}
 	
