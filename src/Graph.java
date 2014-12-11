@@ -101,11 +101,12 @@ public class Graph {
 		System.out.println("*********************");
 		System.out.println(String.format("%-6s %s", "Level", "State"));
 		System.out.println("-----+--------------");
+		Integer current = 1;
 		do {
 			while (!s.empty()) {
 				int currentVertex = (s.peek()).intValue();
 				System.out.println(String.format("%-5s| %s",
-						Vertices.get(currentVertex).id,
+						Vertices.get(currentVertex).level,
 						Vertices.get(currentVertex).name));
 				Integer[] neighbors = getNeighbors(currentVertex);
 
@@ -118,6 +119,12 @@ public class Graph {
 						found = true;
 						depthTree[neighbors[j]] = currentVertex;
 					}
+					for (Integer neighbor : neighbors) {
+						//System.out.println(neighbor + "blump");
+						if (Vertices.get(neighbor).level == null) {
+							Vertices.get(neighbor).setlevel(current);
+						}
+					}
 
 					j++;
 				}
@@ -125,6 +132,7 @@ public class Graph {
 				if (!found) {
 					s.pop();
 				}
+				current++;
 			}
 
 			continueloop = false;
@@ -189,17 +197,12 @@ public class Graph {
 				for (int j = 0; j < neighbors.length; j++) {
 					if (!visited[neighbors[j]]) {
 						q.add(neighbors[j]);
-
 						visited[neighbors[j]] = true;
 						breadthTree[neighbors[j]] = currentVertex;
 						nextlevel++;
 					}
-
 				}
 				level--;
-				// System.out.println(String.format("%-5s| %s",level
-				// ,Vertices.get(currentVertex).name));
-
 			}
 
 			continueloop = false;
