@@ -103,51 +103,51 @@ Breadth first traversal
 *********************
 Level  State
 -----+--------------
-1    | Washington
-5    | Idaho
-2    | Oregon
-9    | Wyoming
-7    | Utah
-6    | Montana
-4    | Nevada
-3    | California
-13   | South Dakota
-14   | Nebraska
-10   | Colorado
-11   | New Mexico
-8    | Arizona
-12   | North Dakota
-18   | Minnesota
-19   | Iowa
-20   | Missouri
-15   | Kansas
-16   | Oklahoma
-17   | Texas
-23   | Wisconsin
-24   | Illinois
-28   | Kentucky
-29   | Tennessee
-21   | Arkansas
-22   | Louisiana
-27   | Indiana
-32   | West Virginia
-33   | Virginia
-31   | Ohio
-34   | North Carolina
-36   | Georgia
-30   | Alabama
-25   | Mississippi
-26   | Michigan
-43   | Maryland
-42   | Pennsylvania
-35   | South Carolina
-37   | Florida
-48   | Delaware
-47   | New Jersey
-41   | New York
-44   | Massachusetts
-46   | Connecticut
-40   | Vermont
-45   | Rhode Island
-39   | New Hampshire
-38   | Maine
+0    | Washington
+1    | Idaho
+1    | Oregon
+2    | Wyoming
+2    | Utah
+2    | Montana
+2    | Nevada
+2    | California
+3    | South Dakota
+3    | Nebraska
+3    | Colorado
+3    | New Mexico
+3    | Arizona
+3    | North Dakota
+4    | Minnesota
+4    | Iowa
+4    | Missouri
+4    | Kansas
+4    | Oklahoma
+4    | Texas
+5    | Wisconsin
+5    | Illinois
+5    | Kentucky
+5    | Tennessee
+5    | Arkansas
+5    | Louisiana
+6    | Indiana
+6    | West Virginia
+6    | Virginia
+6    | Ohio
+6    | North Carolina
+6    | Georgia
+6    | Alabama
+6    | Mississippi
+7    | Michigan
+7    | Maryland
+7    | Pennsylvania
+7    | South Carolina
+7    | Florida
+8    | Delaware
+8    | New Jersey
+8    | New York
+9    | Massachusetts
+9    | Connecticut
+9    | Vermont
+10   | Rhode Island
+10   | New Hampshire
+11   | Maine

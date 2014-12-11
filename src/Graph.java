@@ -2,11 +2,11 @@ import java.util.*;
 
 public class Graph {
 	protected ArrayList<Vertex> Vertices = new ArrayList<Vertex>();
-	private LinkedList[] Edges; 
-	private int numVertices; 
-	private int numEdges; 
-	private int[] depthTree; 
-	private int[] breadthTree; 
+	private LinkedList[] Edges;
+	private int numVertices;
+	private int numEdges;
+	private int[] depthTree;
+	private int[] breadthTree;
 
 	public void setSize(int capacity) {
 		Edges = new LinkedList[capacity];
@@ -99,12 +99,14 @@ public class Graph {
 		boolean continueloop;
 		System.out.println("Depth first traversal");
 		System.out.println("*********************");
-		System.out.println(String.format("%-6s %s","Level", "State"));
+		System.out.println(String.format("%-6s %s", "Level", "State"));
 		System.out.println("-----+--------------");
 		do {
 			while (!s.empty()) {
 				int currentVertex = (s.peek()).intValue();
-				System.out.println(String.format("%-5s| %s",Vertices.get(currentVertex).id ,Vertices.get(currentVertex).name));
+				System.out.println(String.format("%-5s| %s",
+						Vertices.get(currentVertex).id,
+						Vertices.get(currentVertex).name));
 				Integer[] neighbors = getNeighbors(currentVertex);
 
 				int j = 0;
@@ -117,13 +119,13 @@ public class Graph {
 						depthTree[neighbors[j]] = currentVertex;
 					}
 
-					j++; 
+					j++;
 				}
 
 				if (!found) {
 					s.pop();
 				}
-			} 
+			}
 
 			continueloop = false;
 			int j = 0;
@@ -152,7 +154,7 @@ public class Graph {
 		}
 		visited[sourceIndex] = true;
 
-		Queue<Integer> q = new LinkedList<Integer>(); 
+		Queue<Integer> q = new LinkedList<Integer>();
 		q.add(sourceIndex);
 
 		breadthTree = new int[numVertices];
@@ -163,23 +165,43 @@ public class Graph {
 		boolean continueloop;
 		System.out.println("Breadth first traversal");
 		System.out.println("*********************");
-		System.out.println(String.format("%-6s %s","Level", "State"));
+		System.out.println(String.format("%-6s %s", "Level", "State"));
 		System.out.println("-----+--------------");
+		int level = 1;
+		int nextlevel = 0;
+		Integer current = 0;
+
 		do {
 			while (!q.isEmpty()) {
 				int currentVertex = q.remove();
-				System.out.println(String.format("%-5s| %s",Vertices.get(currentVertex).id ,Vertices.get(currentVertex).name));
+
 				Integer[] neighbors = getNeighbors(currentVertex);
+				if (level == 0) {
+					current++;
+					level = nextlevel;
+					nextlevel = 0;
+				}
+				Vertices.get(currentVertex).setlevel(current);
+				System.out.println(String.format("%-5s| %s",
+						Vertices.get(currentVertex).level,
+						Vertices.get(currentVertex).name));
 
 				for (int j = 0; j < neighbors.length; j++) {
 					if (!visited[neighbors[j]]) {
 						q.add(neighbors[j]);
+
 						visited[neighbors[j]] = true;
 						breadthTree[neighbors[j]] = currentVertex;
+						nextlevel++;
 					}
+
 				}
+				level--;
+				// System.out.println(String.format("%-5s| %s",level
+				// ,Vertices.get(currentVertex).name));
+
 			}
-			
+
 			continueloop = false;
 			int j = 0;
 			while (j < numVertices && !continueloop) {
@@ -196,7 +218,7 @@ public class Graph {
 		} while (continueloop);
 
 	}
-	
+
 	public void colorGraph() {
 
 	}
