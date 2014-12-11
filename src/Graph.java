@@ -121,9 +121,9 @@ public class Graph {
 					}
 					for (Integer neighbor : neighbors) {
 						//System.out.println(neighbor + "blump");
-						if (Vertices.get(neighbor).level == null) {
-							Vertices.get(neighbor).setlevel(current);
-						}
+//						if (Vertices.get(neighbor).level == null) {
+//							Vertices.get(neighbor).setlevel(current);
+//						}
 					}
 
 					j++;

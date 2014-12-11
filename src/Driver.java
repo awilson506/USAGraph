@@ -28,9 +28,11 @@ public class Driver {
 			Graph g = new Graph();
 			g = BuildGraph.getMap(g);
 			BuildGraph.assignStateName(g);
-			g.depthFirstTraversal(1);
-			System.out.println("\n");
 			g.breadthFirstTraversal(1);
+			System.out.println("\n");
+			g.depthFirstTraversal(1);
+			
+			
 		} catch (Exception ex) {
 			System.out.println("Error: " + ex);
 		}

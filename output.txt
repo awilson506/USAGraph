@@ -1,104 +1,3 @@
-Depth first traversal
-*********************
-Level  State
------+--------------
-null | Washington
-1    | Idaho
-2    | Wyoming
-3    | South Dakota
-4    | Minnesota
-5    | Wisconsin
-6    | Illinois
-7    | Indiana
-8    | Ohio
-9    | Pennsylvania
-10   | New Jersey
-10   | Delaware
-10   | Maryland
-13   | Virginia
-14   | North Carolina
-15   | South Carolina
-15   | Georgia
-17   | Florida
-17   | Alabama
-14   | Tennessee
-7    | Kentucky
-9    | West Virginia
-7    | Kentucky
-7    | Missouri
-20   | Arkansas
-19   | Mississippi
-25   | Louisiana
-25   | Texas
-24   | Oklahoma
-24   | Kansas
-3    | Nebraska
-4    | Iowa
-3    | Nebraska
-3    | Colorado
-28   | New Mexico
-34   | Arizona
-2    | Utah
-2    | Nevada
-36   | California
-1    | Oregon
-36   | California
-2    | Nevada
-2    | Utah
-34   | Arizona
-28   | New Mexico
-3    | Colorado
-3    | Nebraska
-24   | Kansas
-24   | Oklahoma
-25   | Texas
-25   | Louisiana
-19   | Mississippi
-20   | Arkansas
-7    | Missouri
-7    | Kentucky
-14   | Tennessee
-17   | Alabama
-17   | Florida
-15   | Georgia
-15   | South Carolina
-14   | North Carolina
-13   | Virginia
-10   | Maryland
-10   | Delaware
-10   | New Jersey
-10   | New York
-66   | Massachusetts
-67   | Rhode Island
-66   | Connecticut
-67   | Rhode Island
-66   | Massachusetts
-66   | Vermont
-67   | New Hampshire
-73   | Maine
-67   | New Hampshire
-66   | Vermont
-66   | Massachusetts
-10   | New York
-10   | New Jersey
-9    | Pennsylvania
-8    | Ohio
-8    | Michigan
-8    | Ohio
-7    | Indiana
-6    | Illinois
-5    | Wisconsin
-4    | Minnesota
-4    | North Dakota
-2    | Montana
-4    | North Dakota
-4    | Minnesota
-3    | South Dakota
-2    | Wyoming
-1    | Idaho
-2    | Washington
-
-
 Breadth first traversal
 *********************
 Level  State
@@ -151,3 +50,104 @@ Level  State
 10   | Rhode Island
 10   | New Hampshire
 11   | Maine
+
+
+Depth first traversal
+*********************
+Level  State
+-----+--------------
+0    | Washington
+1    | Idaho
+2    | Wyoming
+3    | South Dakota
+4    | Minnesota
+5    | Wisconsin
+5    | Illinois
+6    | Indiana
+6    | Ohio
+7    | Pennsylvania
+8    | New Jersey
+8    | Delaware
+7    | Maryland
+6    | Virginia
+6    | North Carolina
+7    | South Carolina
+6    | Georgia
+7    | Florida
+6    | Alabama
+5    | Tennessee
+5    | Kentucky
+6    | West Virginia
+5    | Kentucky
+4    | Missouri
+5    | Arkansas
+6    | Mississippi
+5    | Louisiana
+4    | Texas
+4    | Oklahoma
+4    | Kansas
+3    | Nebraska
+4    | Iowa
+3    | Nebraska
+3    | Colorado
+3    | New Mexico
+3    | Arizona
+2    | Utah
+2    | Nevada
+2    | California
+1    | Oregon
+2    | California
+2    | Nevada
+2    | Utah
+3    | Arizona
+3    | New Mexico
+3    | Colorado
+3    | Nebraska
+4    | Kansas
+4    | Oklahoma
+4    | Texas
+5    | Louisiana
+6    | Mississippi
+5    | Arkansas
+4    | Missouri
+5    | Kentucky
+5    | Tennessee
+6    | Alabama
+7    | Florida
+6    | Georgia
+7    | South Carolina
+6    | North Carolina
+6    | Virginia
+7    | Maryland
+8    | Delaware
+8    | New Jersey
+8    | New York
+9    | Massachusetts
+10   | Rhode Island
+9    | Connecticut
+10   | Rhode Island
+9    | Massachusetts
+9    | Vermont
+10   | New Hampshire
+11   | Maine
+10   | New Hampshire
+9    | Vermont
+9    | Massachusetts
+8    | New York
+8    | New Jersey
+7    | Pennsylvania
+6    | Ohio
+7    | Michigan
+6    | Ohio
+6    | Indiana
+5    | Illinois
+5    | Wisconsin
+4    | Minnesota
+3    | North Dakota
+2    | Montana
+3    | North Dakota
+4    | Minnesota
+3    | South Dakota
+2    | Wyoming
+1    | Idaho
+0    | Washington
