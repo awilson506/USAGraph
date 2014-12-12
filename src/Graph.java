@@ -87,7 +87,6 @@ public class Graph {
 			visited[j] = false;
 		}
 		visited[sourceIndex] = true;
-
 		Stack<Integer> s = new Stack<Integer>();
 		s.push(new Integer(sourceIndex));
 
@@ -95,7 +94,6 @@ public class Graph {
 		for (int j = 0; j < numVertices; j++) {
 			depthTree[j] = j;
 		}
-
 		boolean continueloop;
 		System.out.println("Depth first traversal");
 		System.out.println("*********************");
@@ -159,7 +157,6 @@ public class Graph {
 		for (int j = 0; j < numVertices; j++) {
 			breadthTree[j] = j;
 		}
-
 		boolean continueloop;
 		System.out.println("Breadth first traversal");
 		System.out.println("*********************");
@@ -194,7 +191,6 @@ public class Graph {
 				}
 				level--;
 			}
-
 			continueloop = false;
 			int j = 0;
 			while (j < numVertices && !continueloop) {

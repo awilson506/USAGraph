@@ -14,14 +14,13 @@ public class BuildGraph {
 			String line = null;
 			Integer i = 1;
 			Integer j = 1;
-			
+
 			while ((line = vertexInput.readLine()) != null) {
 				g.addVertex(j);
 				j++;
 			}
 			g.setSize(j);
-			
-			
+
 			while ((line = edgeInput.readLine()) != null) {
 				StringTokenizer tokens = new StringTokenizer(line);
 				while (tokens.hasMoreTokens()) {
@@ -31,18 +30,18 @@ public class BuildGraph {
 			}
 			vertexInput.close();
 			edgeInput.close();
-			
+
 			return g;
-			
+
 		} catch (Exception ex) {
 			System.out.println(ex);
 		}
 		return null;
 	}
-	
-	public static void assignStateName(Graph g){
-		
-		for(Vertex vertex : g.Vertices){
+
+	public static void assignStateName(Graph g) {
+
+		for (Vertex vertex : g.Vertices) {
 			vertex.name = getName(vertex.id);
 		}
 	}
